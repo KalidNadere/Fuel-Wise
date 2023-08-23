@@ -3,7 +3,7 @@ const axios = require('axios');
 // Fetch fuel prices from Fuel Check API
 const fetchFuelPrices = async () => {
   try {
-    const response = await axios.get('YOUR_FUEL_CHECK_API_ENDPOINT');
+    const response = await axios.get('FUEL_CHECK_API');
     return response.data;
   } catch (error) {
     console.error('Error fetching fuel prices:', error);
