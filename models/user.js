@@ -1,5 +1,5 @@
-const { DataTypes } = reqiure('sequelize'); // Import the DataTypes object from the Sequelize library.
-const db = require('../config/config') // Import database configuration
+const { DataTypes } = require('sequelize'); // Import the DataTypes object from the Sequelize library.
+const db = require('../config/config') // Import database connection
 
 const User = db.define('User', {
   username: {
