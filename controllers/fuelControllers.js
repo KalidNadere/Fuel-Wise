@@ -13,8 +13,14 @@ const fetchFuelPrices = async () => {
 
 // Process fuel prices and render view
 const showFuelPrices = async (req, res) => {
+  try {
   const fuelPrices = await fetchFuelPrices();
-  // Process fuel prices and render the view
+  res.render('fuelPrices', { fuelPrices }); // Render view with fuel prices
+} catch (error)
+ {
+  console.error('Error processing fuel prices:', error);
+  res.status(500).send('internal server error');
+ }
 };
 
 module.exports = {
