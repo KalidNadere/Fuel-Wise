@@ -2,8 +2,7 @@ const express = require('express');
 const path = require('path');
 const session = require('express-session');
 const hbs = require('express-handlebars');
-const authRoutes = require('./routes/authRoutes');
-const fuelRoutes = require('./routes/fuelRoutes');
+const routes = require('./routes');
 const app = express();
 
 // Set up middleware
@@ -17,8 +16,8 @@ app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
 
 // Define routes
-app.use('/auth', authRoutes);
-app.use('/fuel', fuelRoutes);
+app.use('/routes', routes);
+
 
 // Start the server
 const PORT = process.env.PORT || 3000;
