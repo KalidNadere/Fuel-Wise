@@ -1,0 +1,30 @@
+{{!-- Template generates an HTML table structure for displaying fuel prices, including the fuel station name, location, fuel type, and price per liter/gallon. The values are injected into the template using Handlebars expressions. --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Fuel Prices</title>
+</head>
+<body>
+  <h1>Fuel Prices Near You</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Fuel Staion Name</th>
+        <th>Location</th>
+        <th>Fuel Type</th>
+        <th>Price (per liter/gallon)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each fuelPrices}}
+      <tr>
+        <td>{{this.name}}</td>
+        <td>{{this.location}}</td>
+        <td>{{this.fuelType}}</td>
+        <td>${{this.price}}</td>
+      </tr>
+      {{/each}}
+      </tbody>
+  </table>
+</body>
+</html>

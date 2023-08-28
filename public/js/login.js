@@ -3,8 +3,8 @@ const loginFormHandler = async (event) => {
     event.preventDefault();
 
     //change these query selectors respective to whatever is in html file
-    const email = document.querySelector('').value.trim();
-    const password = document.querySelector('').value.trim();
+    const email = document.querySelector('email').value.trim();
+    const password = document.querySelector('password').value.trim();
   
     if (email && password) {
       // Send a POST request to the API endpoint
@@ -24,4 +24,4 @@ const loginFormHandler = async (event) => {
   };
   
   //query selector needed to be added
-  document.querySelector().addEventListener('submit', loginFormHandler);
+  document.querySelector('#login-form').addEventListener('submit', loginFormHandler);
