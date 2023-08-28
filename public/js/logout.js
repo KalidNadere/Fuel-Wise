@@ -13,4 +13,4 @@ const logout = async () => {
   };
   
   //modifiy the event listener depending on the name of the button 
-  document.querySelector('').addEventListener('click', logout);
+  document.querySelector('#logout').addEventListener('click', logout);

@@ -9,16 +9,17 @@
 </head>
 
 <body>
-  <header>
-    <h1>FuelWise</h1>
-  </header>
-  <nav>
-    <a href="/">Home</a>
-    {{#if loggedIn}}
-    <button id="logout">Logout</button>
-    {{else}}
-    <a href="/login">Login</a>
-    {{/if}}
+  <div class="header">
+    <text class="logo">FuelWise</text>
+    <div class="header-right">
+      <a href="/">Home</a>
+      {{#if loggedIn}}
+      <a href="/">Logout</a>
+      {{else}}
+      <a href="/login">Login</a>
+      {{/if}}
+    </div>
+  </div>
   </nav>
 
   <main>
