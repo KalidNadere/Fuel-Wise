@@ -52,7 +52,7 @@ async function login(req, res) {
 // User logout
 function logout(req, res) {
   // Clear user info from session
-  res.session.user = null;
+  req.session.user = null;
   res.json({ message: 'User logout successful' });
 }
 
