@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-// const authController = require('../../controllers/authControllers');
 const bcrypt = require('bcrypt'); // Password hashing
-const User = require('../models/user');
+const User = require('../../models/user');
 
 // Define authentication routes
 router.post('/signup', async function signup(req, res) {
@@ -33,6 +32,7 @@ router.post('/signup', async function signup(req, res) {
   }
 
 );
+
 router.post('/login', async function login(req, res) {
     const { email, password } = req.body;
   
@@ -51,10 +51,12 @@ router.post('/login', async function login(req, res) {
       res.status(500).json({ message: 'Error logging in' });
     }
 });
-router.post('/profile', authController.profile);
+
+// router.post('/profile', authController.profile);
+
 router.get('/logout', function logout(req, res) {
     // Clear user info from session
-    res.session.user = null;
+    req.session.user = null;
     res.json({ message: 'User logout successful' });
 });
 

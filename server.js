@@ -1,9 +1,11 @@
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
-const hbs = require('express-handlebars');
+const exphbs = require('express-handlebars');
 const routes = require('./routes');
 const app = express();
+
+const hbs = exphbs.create({});
 
 // Set up middleware
 app.use(express.urlencoded({ extended: true }));
@@ -13,7 +15,7 @@ app.use(session({ secret: 'your-secret-key', resave: false, saveUninitialized: t
 // Set up view engine (Handlebars)
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
-app.set('views', path.join(__dirname, 'views'));
+// app.set('views', path.join(__dirname, 'views'));
 
 // Define routes
 app.use('/routes', routes);
