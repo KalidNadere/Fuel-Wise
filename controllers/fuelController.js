@@ -1,19 +1,31 @@
 const axios = require('axios');
+require('dotenv').config();
 
-// Fetch fuel prices from Fuel Check API
-const fetchFuelPrices = async () => {
-  try {
-    const response = await axios.get('FUEL_CHECK_API');
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching fuel prices:', error);
-    return [];
-  }
-};
-
-// Fetch nearby fuel stations based on user's geolocation
+// Fetch nearby fuel stations and prices based on user's geolocation
 const fetchNearbyfuelStations = async (lat, lon) => {
+  const url = "https://api.onegov.nsw.gov.au/FuelPriceCheck/v1/fuel/prices/nearby";
+  const headers = {
+    "accept": "application/json",
+    "Authorization": process.env.ACCESS_KEY,
+    "Content-Type": "application/json",
+    "apikey": process.env.API_KEY,
+    "transactionid": "123",
+    "requesttimestamp": "28/08/2023 07:30:20 PM"
+  };
+  const postBody = {
+    fueltype: "P95", // Fuel type(Examples: P95, P98, E10). REQUIRED
+    brand: [], // Fuel brand name(Examples: BP, Shell, Caltex). NOT REQUIRED
+    namedlocation: "", // Suburb Number(Examples: 2000, 2015). NOT REQUIRED
+    //latitude and longitude. REQUIRED
+    latitude: lat,
+    longitude: lon,
+    radius: "5", // Search radius. REQUIRED
+    sortby: "price",
+    sortascending: "true"
+  }
+
   try {
+    
     const response = await axios.get(`FuelStationAPI?lat=${lat}&lon=${lon}`);
     return response.data;
   } catch (error) {
@@ -23,20 +35,19 @@ const fetchNearbyfuelStations = async (lat, lon) => {
 };
 
 // Process fuel prices and render view
-const showFuelPrices = async (req, res) => {
+const showFuelPrices = async () => {
   try {
     // Get user's geolocation
     navigator.geolocation.getCurrentPosition(
       async (position) => {
         const lat = position.coords.latitude;
-        const log = position.coords.longitude;
+        const lon = position.coords.longitude;
 
         // Fetch fuel prices and nearby fuelstations
-        const fuelPrices = await fetchFuelPrices();
-        const fetchNearbyfuelStations = await fetchNearbyfuelStations(lat, lon);
+        const fetchNearbyStationPrices = await fetchNearbyfuelStations(lat, lon);
 
         // Render view with fuel prices and nearby fuel stations
-        res.render('fuelPrices', { fuelPrices, fetchNearbyfuelStations });
+        res.render('fuelPrices', { fuelPrices, fetchNearbyStationPrices });
       },
       (error) => {
         console.error('Geolocation error:', error);

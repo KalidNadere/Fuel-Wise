@@ -7,19 +7,19 @@ const fetch = require('node-fetch');
 const url = "https://api.onegov.nsw.gov.au/FuelPriceCheck/v1/fuel/prices/nearby";
 const headers = {
   "accept": "application/json",
-  "Authorization": process.env.APItoken,
+  "Authorization": process.env.ACCESS_KEY,
   "Content-Type": "application/json",
-  "apikey": process.env.APIkey,
+  "apikey": process.env.API_KEY,
   "transactionid": "123",
   "requesttimestamp": "28/08/2023 07:30:20 PM"
 };
 
 //necessary data to input for fetch request 
-const data = {
+const postBody = {
     //full type necessary
   fueltype: "P95",
-  brand: ["BP"],
-  namedlocation: "2015",
+  brand: [],
+  namedlocation: "",
   //latitude and longitude are necessary
   latitude: "-33.9080",
   longitude: "151.1903",
@@ -31,7 +31,7 @@ const data = {
 const options = {
   method: 'POST',
   headers: headers,
-  body: JSON.stringify(data)
+  body: JSON.stringify(postBody)
 };
 
 
