@@ -3,9 +3,9 @@ const signupFormHandler = async (event) => {
     event.preventDefault();
   
     //query selector information needs to be added
-    const name = document.querySelector('#username').value.trim();
-    const email = document.querySelector('#email').value.trim();
-    const password = document.querySelector('#password').value.trim();
+    const name = document.querySelector('#signupusername').value.trim();
+    const email = document.querySelector('#signupemail').value.trim();
+    const password = document.querySelector('#signuppassword').value.trim();
   
     // makes sure name/email/password has been filled 
     if (name && email && password) {
@@ -25,4 +25,4 @@ const signupFormHandler = async (event) => {
   };
 
 //   add name of form here 
-  document.querySelector('#signup-form').addEventListener('submit', signupFormHandler);
+  document.querySelector('#signupsubmit').addEventListener('submit', signupFormHandler);
