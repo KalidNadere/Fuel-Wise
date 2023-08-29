@@ -5,3 +5,16 @@
 <section id="map">
 
 </section>
+<div id="map">abc</div>
+<h1>Fuel Prices Near You1</h1>
+
+<ul id="fuel-prices">
+  {{#each fuelStations}}
+  <li>
+    <h2>{{name}}</h2>
+    <p>Address: {{address}}</p>
+    <p>Price per Unit: {{price}}</p>
+    <p>Distance: {{distance}} km</p>
+  </li>
+  {{/each}}
+</ul>
