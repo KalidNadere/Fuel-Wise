@@ -39,6 +39,8 @@
   .header-right {
     float: right;
   }
+
+
   
   @media screen and (max-width: 500px) {
     .header a {
@@ -50,4 +52,17 @@
     .header-right {
       float: none;
     }
+  }
+  
+  h1{
+    margin-left: 1%;
+  }
+
+  table, th, tr {
+    border: 2px solid;
+  }
+
+  table {
+    margin: 0 1%;
+    border-collapse: collapse;
   }
