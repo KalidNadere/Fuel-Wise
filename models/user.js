@@ -1,7 +1,15 @@
-const { DataTypes } = require('sequelize'); // Import the DataTypes object from the Sequelize library.
-const db = require('../config/config') // Import database connection
+const { Model, DataTypes } = require('sequelize'); // Import the DataTypes object from the Sequelize library.
+const sequelize = require('../config/config') // Import database connection
+const bcrypt = require('bcrypt');
 
-const User = db.define('User', {
+class User extends Model {
+  checkPassword(loginPw) {
+    return bcrypt.compareSync(loginPw, this.password);
+  }
+}
+
+const User = (
+  {
   username: {
     type: DataTypes.STRING, // The DataTypes object from Sequelize is used to specify the data types of the model properties.
     allowNull: false,
@@ -18,7 +26,27 @@ const User = db.define('User', {
   password: {
     type: DataTypes.STRING,
     allowNull: false,
+    validate: {
+      len: [8],
+    },
   },
+},
+{
+  hooks: {
+    beforeCreate: async (newUserData) => {
+      newUserData.password = await bcrypt.hash(newUserData.password, 10);
+      return newUserData;
+    },
+    beforeUpdate: async (updatedUserData) => {
+      updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+      return updatedUserData;
+    },
+  },
+  sequelize,
+  timestamps: false,
+  freezeTableName: true,
+  underscored: true,
+  modelName: 'user',
 });
 
 module.exports = User;

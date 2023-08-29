@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt'); // Password hashing
-const User = require('../../models/user');
+const User  = require('../../models/user');
 
 // Define authentication routes
 router.post('/signup', async function signup(req, res) {
@@ -40,12 +40,21 @@ router.post('/login', async function login(req, res) {
       // Find user email
       const user = await User.findOne({ where: { email } });
       if (!user) {
-        return res.status(401).json({ message: 'Invalid credentials' });
+        return res.status(401).json({ message: 'Invalid credentials, try again' });
+      }
+
+      const validPassword = await userData.checkPassword(password);
+      if (!validPassword) {
+        res
+          .status(400)
+          .json({ message: 'Invalid credentials, try again' });
+        return;
       }
   
       // Setting user object in session
       req.session.user = { id: user.id, username: user.username };
       res.json({ message: 'User login successful' });
+      console.log("successful login!")
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Error logging in' });
