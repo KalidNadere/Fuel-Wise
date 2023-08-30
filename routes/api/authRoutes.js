@@ -3,13 +3,12 @@ const router = express.Router();
 const bcrypt = require('bcrypt'); // Password hashing
 const User  = require('../../models/user');
 
-// Define authentication routes
+// Signup route 
 router.post('/signup', async function signup(req, res){
   console.log(req.body)
   try {
     const { username, email, password } = req.body;
 
-    // Create a new user record in the 'User' table
     const newUser = await User.create({
       username,
       email,
@@ -29,6 +28,7 @@ router.post('/signup', async function signup(req, res){
     }
   });
 
+// Login route 
 router.post('/login', async function login(req, res) {
     try {
       const userLogin = await User.findOne({ where: { email: req.body.email } });
@@ -56,8 +56,7 @@ router.post('/login', async function login(req, res) {
     }
 });
 
-// router.post('/profile', authController.profile);
-
+// Logout route 
 router.post('/logout', function logout(req, res) {
   if (req.session.logged_in) {
     req.session.destroy(() => {
