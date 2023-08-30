@@ -1,63 +1,70 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt'); // Password hashing
-const User = require('../../models/user');
+const User  = require('../../models/user');
 
-// Define authentication routes
-router.post('/signup', async function signup(req, res) {
+// Signup route 
+router.post('/signup', async function signup(req, res){
+  console.log(req.body)
+  try {
     const { username, email, password } = req.body;
-  
-    try {
-      // Checking if the user already exists
-      const existingUser = await User.findOne({ where: { email } });
-      if (existingUser) {
-        return res.status(409).json({ message: 'Email already registered' });
-      }
-  
-      // Hash the password
-      const hashedPassword = await bcrypt.hash(password, 10);
-  
-      // Create new user in the database
-      const newUser = await User.create({
-        username,
-        email,
-        password: hashedPassword,
-      });
-  
-      res.json({ message: 'User signup successful' });
+
+    const newUser = await User.create({
+      username,
+      email,
+      password,
+    });
+
+    req.session.save(() => {
+      req.session.user_id = newUser.id;
+      req.session.logged_in = true;
+      res.status(200).json({ message: 'New user created!'});
+    });
+
+  console.log("successfully sign up", newUser);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: 'Error signing up' });
+      res.status(500).json({ message: 'You have an error'});
     }
-  }
+  });
 
-);
-
+// Login route 
 router.post('/login', async function login(req, res) {
-    const { email, password } = req.body;
-  
     try {
-      // Find user email
-      const user = await User.findOne({ where: { email } });
-      if (!user) {
-        return res.status(401).json({ message: 'Invalid credentials' });
+      const userLogin = await User.findOne({ where: { email: req.body.email } });
+      
+      if (!userLogin) {
+        res.status(400).json({ message: 'Invalid password or email, try again' });
+        return;
       }
-  
-      // Setting user object in session
-      req.session.user = { id: user.id, username: user.username };
-      res.json({ message: 'User login successful' });
+      const validPassword = await userLogin.checkPassword(req.body.password);
+
+      if (!validPassword) {
+        res.status(400).json({ message: 'Invalid password or email, try again' });
+        return;
+      }
+      req.session.save(() => {
+        req.session.username = userLogin.username;
+        req.session.logged_in = true;
+        res.status(200).json({ message: 'User has logged in'});
+      });
+
+      console.log("successfully logged in", );
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Error logging in' });
     }
 });
 
-// router.post('/profile', authController.profile);
-
-router.get('/logout', function logout(req, res) {
-    // Clear user info from session
-    req.session.user = null;
-    res.json({ message: 'User logout successful' });
+// Logout route 
+router.post('/logout', function logout(req, res) {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
 });
 
 module.exports = router;

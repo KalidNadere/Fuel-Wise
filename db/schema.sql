@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS fuelwise_db;
+CREATE DATABASE fuelwise_db;
