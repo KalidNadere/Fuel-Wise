@@ -16,8 +16,14 @@ router.post('/signup', async function signup(req, res){
       password,
     });
 
-  res.status(200).json({ message: 'New user created!'});
-  console.log("successfully sign up", newUser)
+    req.session.save(() => {
+      req.session.user_id = newUser.id;
+      req.session.username = newUser.username;
+      req.session.logged_in = true;
+      res.status(200).json({ message: 'New user created!'});
+    });
+
+  console.log("successfully sign up", newUser);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'You have an error'});
@@ -38,8 +44,14 @@ router.post('/login', async function login(req, res) {
         res.status(400).json({ message: 'Invalid password or email, try again' });
         return;
       }
+      req.session.save(() => {
+        req.session.user_id = newUser.id;
+        req.session.username = newUser.username;
+        req.session.logged_in = true;
+        res.status(200).json({ message: 'New user created!'});
+      });
 
-      res.status(200).json({ message: 'User login successful' });
+      console.log("successfully logged in", );
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Error logging in' });
