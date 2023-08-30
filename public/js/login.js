@@ -17,6 +17,7 @@ const loginFormHandler = async (event) => {
     //   if the response is 200 then send user to /profile page
     if (reply.ok) {
       document.location.replace("/");
+      console.log("successfully sent to the backend")
     } else {
       alert(reply.statusText);
     }
