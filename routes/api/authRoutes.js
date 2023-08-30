@@ -46,12 +46,16 @@ router.post('/login', async function login(req, res) {
     }
 });
 
-// // router.post('/profile', authController.profile);
+// router.post('/profile', authController.profile);
 
-// router.get('/logout', function logout(req, res) {
-//     // Clear user info from session
-//     req.session.user = null;
-//     res.json({ message: 'User logout successful' });
-// });
+router.get('/logout', function logout(req, res) {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
 
 module.exports = router;
