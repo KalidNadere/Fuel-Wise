@@ -1,17 +1,15 @@
 // Sign up function
 const signupFormHandler = async (event) => {
   event.preventDefault();
-  
+
   //query selector information needs to be added
   const username = document.querySelector("#signupusername").value.trim();
   const email = document.querySelector("#signupemail").value.trim();
   const password = document.querySelector("#signuppassword").value.trim();
-  console.log(username, email, password);
 
   // makes sure name/email/password has been filled
   if (username && email && password) {
     // creates a fetch request
-    console.log("this is working");
     const reply = await fetch("api/users/signup", {
       method: "POST",
       body: JSON.stringify({ username, email, password }),

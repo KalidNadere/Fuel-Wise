@@ -4,6 +4,7 @@ const session = require("express-session");
 const exphbs = require("express-handlebars");
 const routes = require("./routes");
 const app = express();
+const sequelize = require('./config/config');
 
 const hbs = exphbs.create({});
 
@@ -30,6 +31,7 @@ app.use(routes);
 
 // Start the server
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
+
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log(`Now listening on ${PORT}`));
 });

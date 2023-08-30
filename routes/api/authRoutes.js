@@ -5,6 +5,7 @@ const User  = require('../../models/user');
 
 // Define authentication routes
 router.post('/signup', async function signup(req, res){
+  console.log(req.body)
   try {
     const { username, email, password } = req.body;
 
@@ -16,7 +17,7 @@ router.post('/signup', async function signup(req, res){
     });
 
   res.status(200).json({ message: 'New user created!'});
-  console.log("successfully sign up")
+  console.log("successfully sign up", newUser)
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'You have an error'});
