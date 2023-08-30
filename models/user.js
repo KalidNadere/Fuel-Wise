@@ -13,8 +13,8 @@ User.init(
   id: {
       type: DataTypes.INTEGER, 
       allowNull: false,
-      primaryKey: true,
       autoIncrement: true,
+      primaryKey: true,
   },
   username: {
     type: DataTypes.STRING, // The DataTypes object from Sequelize is used to specify the data types of the model properties.
@@ -49,7 +49,7 @@ User.init(
   timestamps: false,
   freezeTableName: true,
   underscored: true,
-  modelName: 'user',
+  modelName: 'User',
 });
 
 module.exports = User;
