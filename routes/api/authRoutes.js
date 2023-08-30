@@ -18,7 +18,6 @@ router.post('/signup', async function signup(req, res){
 
     req.session.save(() => {
       req.session.user_id = newUser.id;
-      req.session.username = newUser.username;
       req.session.logged_in = true;
       res.status(200).json({ message: 'New user created!'});
     });
@@ -45,10 +44,9 @@ router.post('/login', async function login(req, res) {
         return;
       }
       req.session.save(() => {
-        req.session.user_id = newUser.id;
-        req.session.username = newUser.username;
+        req.session.username = userLogin.username;
         req.session.logged_in = true;
-        res.status(200).json({ message: 'New user created!'});
+        res.status(200).json({ message: 'User has logged in'});
       });
 
       console.log("successfully logged in", );
@@ -60,7 +58,7 @@ router.post('/login', async function login(req, res) {
 
 // router.post('/profile', authController.profile);
 
-router.get('/logout', function logout(req, res) {
+router.post('/logout', function logout(req, res) {
   if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();
