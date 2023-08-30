@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="/js/login.js"></script>
   <title>Fuel Wise Login</title>
   <link rel="stylesheet" href="/styles/login.css">
 </head>
@@ -13,10 +12,12 @@
     <input type="checkbox" id="check">
     <div class="login form">
       <header>Login</header>
-      <form action="#">
-        <input type="text" placeholder="Enter your email">
-        <input type="password" placeholder="Enter your password">
-        <input type="button" class="button" value="Login">
+      <form action="#" id="login-form">
+        <input type="text" placeholder="Enter your email" id="loginemail">
+        <input type="password" placeholder="Enter your password" id="loginpassword">
+        <div class="form">
+          <button type="submit" class="button">Login</button>
+        </div>
       </form>
       <div class="signup">
         <span class="signup">Don't have an account?
@@ -26,11 +27,13 @@
     </div>
     <div class="registration form">
       <header>Signup</header>
-      <form action="#">
-        <input type="text" placeholder="Enter your username">
-        <input type="password" placeholder="Enter your email">
-        <input type="password" placeholder="Enter your password">
-        <input type="button" class="button" value="Signup">
+      <form action="#" id="signup-form">
+        <input type="text" placeholder="Enter your username" id="signupusername">
+        <input type="text" placeholder="Enter your email" id="signupemail">
+        <input type="password" placeholder="Enter your password" id="signuppassword">
+        <div class="form">
+              <button type="submit" class="button">Signup</button>
+        </div>
       </form>
       <div class="signup">
          <label for="check">Login</label>
@@ -39,3 +42,5 @@
     </div>
   </div>
 </body>
+<script src="/js/login.js"></script>
+<script src="/js/signup.js"></script>
