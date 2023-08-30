@@ -1,6 +1,6 @@
 const logout = async () => {
     // send a fetch request tp backend to logout user
-    const reply = await fetch('/logout', {
+    const reply = await fetch('/api/users/logout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
     });

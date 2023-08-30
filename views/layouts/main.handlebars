@@ -13,8 +13,8 @@
     <text class="logo">FuelWise</text>
     <div class="header-right">
       <a href="/">Home</a>
-      {{#if loggedIn}}
-      <a href="/">Logout</a>
+      {{#if logged_in}}
+      <a id="logout" href="/">Logout</a>
       {{else}}
       <a href="/login">Login</a>
       {{/if}}

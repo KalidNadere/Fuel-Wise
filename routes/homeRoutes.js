@@ -3,7 +3,8 @@ const router = require('express').Router();
 router.get('/',async (req,res) => {
     try{
         console.log('Render homepage')
-        res.render('dashboard');
+        const logged_in = req.session.logged_in || false;
+        res.render('dashboard', { logged_in }); 
     }catch{
         console.log("didnt render")
     }

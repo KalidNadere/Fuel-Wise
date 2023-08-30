@@ -3,27 +3,32 @@ const router = express.Router();
 const bcrypt = require('bcrypt'); // Password hashing
 const User  = require('../../models/user');
 
-// Define authentication routes
+// Signup route 
 router.post('/signup', async function signup(req, res){
   console.log(req.body)
   try {
     const { username, email, password } = req.body;
 
-    // Create a new user record in the 'User' table
     const newUser = await User.create({
       username,
       email,
       password,
     });
 
-  res.status(200).json({ message: 'New user created!'});
-  console.log("successfully sign up", newUser)
+    req.session.save(() => {
+      req.session.user_id = newUser.id;
+      req.session.logged_in = true;
+      res.status(200).json({ message: 'New user created!'});
+    });
+
+  console.log("successfully sign up", newUser);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'You have an error'});
     }
   });
 
+// Login route 
 router.post('/login', async function login(req, res) {
     try {
       const userLogin = await User.findOne({ where: { email: req.body.email } });
@@ -38,17 +43,21 @@ router.post('/login', async function login(req, res) {
         res.status(400).json({ message: 'Invalid password or email, try again' });
         return;
       }
+      req.session.save(() => {
+        req.session.username = userLogin.username;
+        req.session.logged_in = true;
+        res.status(200).json({ message: 'User has logged in'});
+      });
 
-      res.status(200).json({ message: 'User login successful' });
+      console.log("successfully logged in", );
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Error logging in' });
     }
 });
 
-// router.post('/profile', authController.profile);
-
-router.get('/logout', function logout(req, res) {
+// Logout route 
+router.post('/logout', function logout(req, res) {
   if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();
