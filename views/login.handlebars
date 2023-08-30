@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="/style.css"></script>
   <title>Fuel Wise Login</title>
   <link rel="stylesheet" href="/styles/login.css">
 </head>
@@ -13,10 +12,10 @@
     <input type="checkbox" id="check">
     <div class="login form">
       <header>Login</header>
-      <form action="#">
+      <form action="#" id="login-form">
         <input type="text" placeholder="Enter your email" id="loginemail">
         <input type="password" placeholder="Enter your password" id="loginpassword">
-        <input type="button" class="button" value="Login" id="loginsubmit">
+        <button type="submit" class="button">Login</button>
       </form>
       <div class="signup">
         <span class="signup">Don't have an account?
@@ -26,11 +25,11 @@
     </div>
     <div class="registration form">
       <header>Signup</header>
-      <form action="#">
+      <form action="#" id="signup-form">
         <input type="text" placeholder="Enter your username" id="signupusername">
         <input type="text" placeholder="Enter your email" id="signupemail">
         <input type="password" placeholder="Enter your password" id="signuppassword">
-        <input type="button" class="button" value="Signup" id="signupsubmit">
+        <button type="submit" class="button">Signup</button>
       </form>
       <div class="signup">
          <label for="check">Login</label>

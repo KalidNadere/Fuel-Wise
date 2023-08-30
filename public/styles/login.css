@@ -62,7 +62,7 @@
   .form a:hover{
     text-decoration: underline;
   }
-  .form input.button{
+  .form button{
     color: #fff;
     background: #086bc2;
     font-size: 1.2rem;
@@ -73,7 +73,7 @@
     transition: 0.4s;
     border-radius: 30px;
   }
-  .form input.button:hover{
+  .form button:hover{
     background: #0084ff;
   }
   .signup{

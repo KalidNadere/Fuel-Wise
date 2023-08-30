@@ -4,34 +4,16 @@ const bcrypt = require('bcrypt'); // Password hashing
 const User  = require('../../models/user');
 
 // Define authentication routes
-router.post('/signup', async function signup(req, res) {
-    const { username, email, password } = req.body;
-  
-    try {
-      // Checking if the user already exists
-      const existingUser = await User.findOne({ where: { email } });
-      if (existingUser) {
-        return res.status(409).json({ message: 'Email already registered' });
-      }
-  
-      // Hash the password
-      const hashedPassword = await bcrypt.hash(password, 10);
-  
-      // Create new user in the database
-      const newUser = await User.create({
-        username,
-        email,
-        password: hashedPassword,
-      });
-  
-      res.json({ message: 'User signup successful' });
+router.post('/signup', async function signup(req, res){
+  try {  
+  const newUser = await User.create(req.body);
+  res.status(200).json(newUser);
+  console.log("successfully sign up")
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: 'Error signing up' });
+      res.status(500).json(error);
     }
-  }
-
-);
+  });
 
 router.post('/login', async function login(req, res) {
     const { email, password } = req.body;
