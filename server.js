@@ -7,6 +7,7 @@ const app = express();
 const sequelize = require('./config/config');
 const PORT = process.env.PORT || 3001;
 
+//
 const hbs = exphbs.create({});
 
 // Set up view engine (Handlebars)
