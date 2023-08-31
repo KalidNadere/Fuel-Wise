@@ -5,12 +5,8 @@ require('dotenv').config();
 
 router.get('/',async (req,res) => {
     try{
-        const stationPrices = showFuelPrices();
         const logged_in = req.session.logged_in || false;
-        res.render('dashboard', {
-            ...stationPrices,
-            logged_in
-        });
+        res.render('dashboard', {logged_in});
         console.log('Rendered homepage')
     }catch (err) {
         console.log("didnt render")
