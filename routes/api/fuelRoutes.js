@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const {FuelStation} = require('../../models')
 
-const fuelController = require('../controllers/fuelController');
-const isAuthenticated = require('../../middlewares/authMiddleware')
+// const fuelController = require('../../controllers/fuelController');
+// const isAuthenticated = require('../../middlewares/authMiddleware')
 
 router.get('/locations', async (req,res) =>{
     try{
@@ -16,6 +16,6 @@ router.get('/locations', async (req,res) =>{
 })
 
 // Define fuel-related routes
-router.get('/prices', fuelController.showFuelPrices);
+// router.get('/prices', fuelController.showFuelPrices);
 
 module.exports = router;
