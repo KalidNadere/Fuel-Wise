@@ -13,13 +13,14 @@ const hbs = exphbs.create({});
 // Set up view engine (Handlebars)
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
-// app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'));
 
 // Set up middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
+//Setup session cookie
 const sess = {
   secret: 'secret key',
   cookie: {
@@ -33,11 +34,6 @@ const sess = {
 };
 
 app.use(session(sess));
-
-// Set up view engine (Handlebars)
-app.engine("handlebars", hbs.engine);
-app.set("view engine", "handlebars");
-app.set("views", path.join(__dirname, "views"));
 
 // Define routes
 app.use(routes);

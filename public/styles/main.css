@@ -6,6 +6,7 @@
     height: 100%;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
+    background: #dbe2e6;
   }
   
   .header {
@@ -40,7 +41,7 @@
   .header-right {
     float: right;
   }
-  
+
   @media screen and (max-width: 500px) {
     .header a {
       float: none;
@@ -52,6 +53,20 @@
       float: none;
     }
   }
+  
+  h1{
+    margin-left: 1%;
+  }
+
+  table, th, tr {
+    border: 2px solid;
+  }
+
+  table {
+    margin: 0 1%;
+    border-collapse: collapse;
+  }
+
 
 
 /*

@@ -1,23 +1,46 @@
-const { DataTypes } = require('sequelize');
-const db = require('../config/config');
+const { Model,  DataTypes } = require('sequelize');
+const sequelize = require('../config/config');
 
-const FuelStation = db.define('FuelStation', {
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
+class FuelStation extends Model {}
+
+FuelStation.init(
+  {
+    brand_id: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    station_id: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    brand: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    code: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey:true
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    location: {
+      type: DataTypes.JSON,
+      allowNull: false,
+    },
   },
-  address: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  pricePerUnit: {
-    type: DataTypes.DECIMAL(10, 2),
-    allowNull: false,
-  },
-  distance: {
-    type: DataTypes.DECIMAL(6, 2),
-    allowNull: false,
-  },
-});
+  {
+    sequelize,
+    freezeTableName:true,
+    underscored: true,
+    modelName:'fuelStation'
+  }
+)
 
 module.exports = FuelStation;
