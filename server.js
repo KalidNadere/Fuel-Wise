@@ -7,13 +7,7 @@ const app = express();
 const sequelize = require('./config/config');
 const PORT = process.env.PORT || 3001;
 
-//
 const hbs = exphbs.create({});
-
-// Set up view engine (Handlebars)
-app.engine("handlebars", hbs.engine);
-app.set("view engine", "handlebars");
-app.set('views', path.join(__dirname, 'views'));
 
 // Set up middleware
 app.use(express.json());
@@ -34,6 +28,11 @@ const sess = {
 };
 
 app.use(session(sess));
+
+// Set up view engine (Handlebars)
+app.engine("handlebars", hbs.engine);
+app.set("view engine", "handlebars");
+app.set('views', path.join(__dirname, 'views'));
 
 // Define routes
 app.use(routes);
