@@ -6,9 +6,12 @@ const {FuelStation} = require('../../models')
 // const isAuthenticated = require('../../middlewares/authMiddleware')
 
 router.get('/locations', async (req,res) =>{
+    console.log("Recieved GET request for station locations")
     try{
         const stationData = await FuelStation.findAll()
-        stationData = JSON.stringify(stationData)
+        if (stationData){
+            console.log("Station data retrieved")
+        }
         res.status(200).json(stationData);
     }catch(err) {
         res.status(500).json(err)
