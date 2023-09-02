@@ -83,18 +83,15 @@ Google maps related CSS
  .station {
   align-items: center;
   background-color: #333;
-  border-radius: 50%;
+  border-radius: 8px;
   color: #fff;
   display: flex;
   font-size: 12px;
   gap: 15px;
-  height: 30px;
   justify-content: center;
   padding: 4px;
   position: relative;
-  position: relative;
   transition: all 0.3s ease-out;
-  width: 60px;
 }
 
 .station::after {
@@ -116,6 +113,8 @@ Google maps related CSS
   align-items: center;
   display: flex;
   justify-content: center;
+  border-radius: 8px;
+  width: auto;
   color: #FFFFFF;
 }
 
@@ -133,9 +132,14 @@ Google maps related CSS
 .station .address {
   color: #9E9E9E;
   font-size: 10px;
-  margin-bottom: 10px;
-  margin-top: 5px;
 }
+
+.station .cent, .kilo, .lastUpdated {
+  color: #9E9E9E;
+  font-size: 10px;
+}
+
+
 
 .station .features {
   align-items: flex-end;
@@ -181,65 +185,6 @@ Google maps related CSS
   height: 50px;
 }
 
-
-/*
- * House icon colors.
- */
-.station.highlight:has(.fa-house) .icon {
-  color: var(--house-color);
+.station.highlight .icon {
+  display: none;
 }
-
-.station:not(.highlight):has(.fa-house) {
-  background-color: var(--house-color);
-}
-
-.station:not(.highlight):has(.fa-house)::after {
-  border-top: 9px solid var(--house-color);
-}
-
-/*
- * Building icon colors.
- */
-.station.highlight:has(.fa-building) .icon {
-  color: var(--building-color);
-}
-
-.station:not(.highlight):has(.fa-building) {
-  background-color: var(--building-color);
-}
-
-.station:not(.highlight):has(.fa-building)::after {
-  border-top: 9px solid var(--building-color);
-}
-
-/*
- * Warehouse icon colors.
- */
-.station.highlight:has(.fa-warehouse) .icon {
-  color: var(--warehouse-color);
-}
-
-.station:not(.highlight):has(.fa-warehouse) {
-  background-color: var(--warehouse-color);
-}
-
-.station:not(.highlight):has(.fa-warehouse)::after {
-  border-top: 9px solid var(--warehouse-color);
-}
-
-/*
- * Shop icon colors.
- */
-.station.highlight:has(.fa-shop) .icon {
-  color: var(--shop-color);
-}
-
-.station:not(.highlight):has(.fa-shop) {
-  background-color: var(--shop-color);
-}
-
-.station:not(.highlight):has(.fa-shop)::after {
-  border-top: 9px solid var(--shop-color);
-}
-
-/* [END maps_advanced_markers_html] */
