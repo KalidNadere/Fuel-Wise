@@ -5,7 +5,7 @@
 
 ## Table of Contents
 - [Description](#description)
-- [Deployed URL](#URL-of-deployed-page)
+- [Deployed URL](#deployed-url)
 - [Technologies used](#technologies-used)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -19,7 +19,7 @@ Fuel Wise: Your Journey, Your Savings. Discover the cheapest fuel prices near yo
 
 ![image_720](https://github.com/nikoauer/Fuel-Wise/assets/131591052/2a5cd522-2212-43f2-86f1-74ffca80b357)
 
-## URL of deployed Heroku page
+## Deployed URL
 https://fuelwise-a0dd0510bf2b.herokuapp.com/
 
 
