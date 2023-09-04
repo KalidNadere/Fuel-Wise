@@ -74,7 +74,7 @@ async function getFuel() {
       const url = "https://api.onegov.nsw.gov.au/FuelPriceCheck/v1/fuel/prices/nearby";
       const headers = {
           "accept": "application/json",
-          "Authorization": "Bearer 2hrpGYsaWHhMJUTa2RxEl3uEYGu9",//process.env.ACCESS_KEY,
+          "Authorization": "Bearer pJVeA1eBaEpIVUnJLVB4qEGk0PsI",//process.env.ACCESS_KEY,
           "Content-Type": "application/json",
           "apikey": "csnAKudd1pOGKLWIikPZRbZe9YrnO7Ij",//process.env.API_KEY,
           "transactionid": "123",
